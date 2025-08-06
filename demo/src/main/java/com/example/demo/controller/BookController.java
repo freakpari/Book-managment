@@ -21,7 +21,6 @@ public class BookController {
     }
     @GetMapping
     public List<Book> getAllBooks() {
-
         return bookService.getAllBooks();
     }
     @GetMapping("/{id}")
@@ -42,8 +41,12 @@ public class BookController {
         return bookService.updateBook(id,book);
     }
     @DeleteMapping("/{id}")
-    public  ResponseEntity<Book> deleteBookById(@PathVariable Long id){
-        boohttp://localhost:8080/api/bookskService.deleteBook(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteBookById(@PathVariable Long id) {
+        boolean deleted = bookService.deleteBookById(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
