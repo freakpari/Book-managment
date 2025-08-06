@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private UserService userService;
-    private  JwtUtil jwtUtil;
+    private final UserService userService;
+    private final   JwtUtil jwtUtil;
 
     public AuthController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
