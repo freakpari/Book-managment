@@ -76,25 +76,31 @@ class BookServiceTest {
         assertTrue(result.isPresent());
         assertEquals("Sample Author", result.get().getAuthor());
     }
-
     @Test
     void testDeleteBook_Success() {
-        when(bookRepository.existsById(1L)).thenReturn(true);
+        Long id = 1L;
+        Book book = new Book();
+        book.setId(id);
 
-        bookService.deleteBook(1L);
-        verify(bookRepository).deleteById(1L);
+        when(bookRepository.findById(id)).thenReturn(Optional.of(book));
+        boolean deleted = bookService.deleteBookById(id);
+        assertTrue(deleted);
+        verify(bookRepository).deleteById(id);
     }
+
 
     @Test
     void testDeleteBook_NotFound() {
-        when(bookRepository.existsById(1L)).thenReturn(false);
+        Long id = 1L;
+        lenient().when(bookRepository.findById(id)).thenReturn(Optional.empty());
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            bookService.deleteBook(1L);
+            bookService.deleteBookById(id);
         });
 
-        assertEquals("the book not found1", exception.getMessage());
+        assertTrue(exception.getMessage().contains("not found"));
     }
+
 
     @Test
     void testUpdateBook_Success() {

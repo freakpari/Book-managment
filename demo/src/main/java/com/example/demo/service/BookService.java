@@ -14,25 +14,32 @@ public class BookService {
     private BookRepository bookRepository;
 
     public Book addBook(Book book){
-
         return bookRepository.save(book);
     }
     public List<Book> getAllBooks(){
+
         return bookRepository.findAll();
     }
     public Optional<Book> getBookById(Long id) {
+
         return bookRepository.findById(id);
     }
 
     public Optional<Book> getBookByTitle(String title) {
+
         return bookRepository.findByTitle(title);
     }
-    public void deleteBook(Long id){
-        if(!bookRepository.existsById(id)) {
+    public boolean deleteBookById(Long id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        if (bookOptional.isPresent()) {
+            bookRepository.deleteById(id);
+            return true;
+        } else {
             throw new RuntimeException("the book not found" + id);
         }
-        bookRepository.deleteById(id);
     }
+
+
     public Book updateBook(Long id,Book updateBook){
         Optional<Book> exitingBook = bookRepository.findById(id);
         if(exitingBook.isPresent()){
