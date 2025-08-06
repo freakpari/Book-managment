@@ -24,7 +24,7 @@ public class Book {
 
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long bookId;
 
     @NotBlank(message = "Title cannot be empty")
     private String title;
@@ -37,11 +37,11 @@ public class Book {
 
 
     public long getId() {
-        return id;
+        return bookId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long bookId) {
+        this.bookId = bookId;
     }
 
     public String getTitle() {
@@ -71,7 +71,7 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
+                "id=" + bookId +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", year=" + publicationYear +
