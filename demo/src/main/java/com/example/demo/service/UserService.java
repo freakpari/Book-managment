@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserService {
+  public class UserService {
 
-@Autowired
-private  UserRepository userRepository;
-private    PasswordEncoder passwordEncoder;
-public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
+  @Autowired
+  private  UserRepository userRepository;
+  private    PasswordEncoder passwordEncoder;
+  public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
     this.userRepository=userRepository;
     this.passwordEncoder=passwordEncoder;
-}
-    public User registerUser(User user) {
+  }
+   public User registerUser(User user) {
 
         if(userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("Username already taken");
