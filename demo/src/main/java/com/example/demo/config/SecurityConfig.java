@@ -41,7 +41,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // برای استفاده در AuthenticationProvider و جاهای دیگر
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
