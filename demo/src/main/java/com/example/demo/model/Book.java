@@ -7,11 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Book {
-
-
     public Book() {
     }
 
@@ -20,8 +22,6 @@ public class Book {
         this.author=author;
         this.publicationYear=publicationYear;
     }
-
-
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long bookId;
@@ -34,39 +34,6 @@ public class Book {
 
     @Min(value = 1000 , message = "Year must be a valid number")
     private Integer publicationYear;
-
-
-    public long getId() {
-        return bookId;
-    }
-
-    public void setId(long bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Integer getPublicationYear() {
-        return publicationYear;
-    }
-
-    public void setPublicationYear(Integer publicationYear) {
-        this.publicationYear = publicationYear;
-    }
 
     @Override
     public String toString() {

@@ -1,18 +1,17 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "users")
 public class User {
     public User(){
 
     }
-    public User(String username,String password){
-        this.username=username;
-        this.password=password;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -22,28 +21,4 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    public Long getId() {
-        return userId;
-    }
-
-    public void setId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

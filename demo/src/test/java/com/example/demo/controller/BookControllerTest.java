@@ -57,7 +57,7 @@ class BookControllerTest {
 
         Book savedBook = mapper.readValue(response, Book.class);
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/books/" + savedBook.getId()))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/books/" + savedBook.getBookId()))
                 .andExpect(status().isOk());
     }
 
@@ -98,7 +98,7 @@ class BookControllerTest {
 
         savedBook.setAuthor("New Author");
 
-        mockMvc.perform(MockMvcRequestBuilders.patch("/api/books/" + savedBook.getId())
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/books/" + savedBook.getBookId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(savedBook)))
                 .andExpect(status().isOk());
@@ -121,7 +121,7 @@ class BookControllerTest {
 
         Book savedBook = mapper.readValue(response, Book.class);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/books/" + savedBook.getId()))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/books/" + savedBook.getBookId()))
                 .andExpect(status().isNoContent());
     }
 

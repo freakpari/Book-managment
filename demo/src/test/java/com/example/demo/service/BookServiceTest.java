@@ -27,7 +27,7 @@ class BookServiceTest {
     @BeforeEach
     void setUp() {
         sampleBook = new Book("Sample Title", "Sample Author", 2020);
-        sampleBook.setId(1L);
+        sampleBook.setBookId(1L);
     }
 
     @Test
@@ -80,7 +80,7 @@ class BookServiceTest {
     void testDeleteBook_Success() {
         Long id = 1L;
         Book book = new Book();
-        book.setId(id);
+        book.setBookId(id);
 
         when(bookRepository.findById(id)).thenReturn(Optional.of(book));
         boolean deleted = bookService.deleteBookById(id);

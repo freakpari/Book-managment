@@ -20,7 +20,6 @@ import java.util.Optional;
     this.passwordEncoder=passwordEncoder;
   }
    public User registerUser(User user) {
-
         if(userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("Username already taken");
         }
@@ -32,10 +31,4 @@ import java.util.Optional;
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-    public PasswordEncoder passwordEncoder() {
-        return this.passwordEncoder;
-    }
-
-
-
 }
